@@ -1,0 +1,117 @@
+@charset "utf-8";
+
+/*__base styles__*/
+html {width:100%; height:100%;}
+body {height:100%; font-family: Verdana, Geneva, sans-serif; font-size:12px; min-width:990px; color:#000; background:#fff url(../images/main_bg.png) center top repeat-y;}
+
+a:link, a:visited { text-decoration:none; color:#000; }
+a:hover {text-decoration:underline;}
+
+@font-face { font-family: 'FuturaNewBook'; src: url('../fonts/futura_new_book-webfont.eot'); src: url('../fonts/futura_new_book-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/futura_new_book-webfont.woff') format('woff'), url('../fonts/futura_new_book-webfont.ttf') format('truetype'), url('../fonts/futura_new_book-webfont.svg#FuturaNewBook') format('svg');font-weight: normal;font-style: normal;}
+
+.clear { clear:both; content:"."; zoom:1; float:none !important; text-indent:-5000px; font-size:0px !important; line-height:0px !important; }
+.he {height:140px;}
+.fRight {float:right;}
+
+.clearfix:after {content:""; display:block; clear:both;}
+*html .clearfix {height:1%;}
+*:first-child+html .clearfix {height:1%;}
+
+h1,h2,h3,h4,h5,h6 {font-weight:normal; color:#000;}
+h1 {font-size:18px;}
+h2 {font-size:16px;}
+h3 {font-size:14px; font-weight:bold}
+h4 {font-size:12px; color:#777;}
+h4.head span {background:url(../images/head_bg.png) right top no-repeat; display:inline-block; height:13px; padding:2px 20px 0 9px; line-height:10px; color:#fff; font-size:10px; margin-right:4px;}
+h5 {font-size:10px; font-weight:bold;}
+h6 {font-size:10px;}
+
+.wrapper {position:relative; width:970px; z-index:1; margin:0 auto; min-height:100%; height:auto;}
+*html .wrapper { height:100%; }
+
+/*header*/
+.mainHeader { border-bottom:2px solid #000; padding:13px 3px 17px 0; margin-bottom:10px;}
+.mainHeader .col { float:left;}
+.mainHeader .colA {float:right; padding-top:15px;}
+.mainHeader .colA a {background:url(../images/logo_34mag.png); width:101px; height:35px; display:block;}
+.mainHeader .colB {width:176px;}
+.mainHeader .colB a {background:url(../images/logo_rovar.png); width:88px; height:61px; display:block;}
+.mainHeader .colC {padding-top:13px;font: 14px 'FuturaNewBook';}
+.mainHeader .colC ul {float:left; width:123px; padding-right:11px; }
+.mainHeader .colC ul li { padding-bottom:7px;}
+.mainHeader .colC a {display:block; }
+.mainHeader .colD { margin-left:-11px; padding-top:7px;}
+.mainHeader .colD .txt { border:none; border-bottom:1px solid #ccc; width:97px;}
+.mainHeader .colD .btn { background:url(../images/icons/magnif.png); width:17px; height:15px; border:none; vertical-align:middle; cursor:pointer;}
+.mainHeader .colD .panelA { padding-bottom:10px;}
+.mainHeader .colD .panelB a,
+.mainFooter .colC .panelB a { display:inline-block; vertical-align:middle; margin-right:7px;}
+.mainHeader .colD .twi,
+.mainFooter .colC .twi		{ background:url(../images/icons/twi.png); width:19px; height:18px;}
+.mainHeader .colD .facebook,
+.mainFooter .colC .facebook	{ background:url(../images/icons/facebook.png); width:7px; height:14px;}
+.mainHeader .colD .vk,
+.mainFooter .colC .vk 		{ background:url(../images/icons/vk.png); width:23px; height:18px;}
+.mainHeader .colD .youtube,
+.mainFooter .colC .youtube	{ background:url(../images/icons/youtube.png); width:17px; height:16px;}
+.mainHeader .colD .rss,
+.mainFooter .colC .rss		{ background:url(../images/icons/rss.png); width:19px; height:18px;}
+
+/*footer*/
+.mainFooter{height:98px; width:970px; margin:-112px auto 0; position:relative; z-index:10; border-top:2px solid #000; font-size:11px; color:#7f7f7f; padding:12px 0 0 0; }
+.mainFooter a {color:#7f7f7f;}
+.mainFooter .col { float:left;}
+.mainFooter .colA { float:right; padding-top:3px;}
+.mainFooter .colB {width:130px;}
+.mainFooter .colB a {background:url(../images/logo_rovar.png); width:88px; height:61px; display:block;}
+.mainFooter .colC {width:180px; padding-top:5px;}
+.mainFooter .colC .panelA { line-height:14px; padding-bottom:8px;}
+.mainFooter .colC .panelA a { display:block;}
+.mainFooter .colD ul { float:left; width:115px; padding-right:3px; line-height:14px; padding-top:5px;}
+
+/*content*/
+.sideCol { float:right; width:290px; padding-top:16px;}
+.sideCol .holder { margin-bottom:28px;}
+.sideCol .holder h4.head { margin-bottom:18px;}
+/*news scroll pane*/
+.newsPane {	width:100%; height:257px; overflow: auto; border:1px solid #ccc; font-size:11px; line-height:13px; color:#6f6f6f;}
+.newsPane .container { border-top:1px dashed #c4c4c4; margin:10px 4px 0 15px; padding-top:10px; padding-bottom:4px;}
+.newsPane .container:first-child { border:none; padding-top:2px;}
+.newsPane a {color:#6f6f6f;}
+.newsPane .altColor, .newsPane .altColor a { color:#259e6f;} /*for old browsers*/
+.newsPane .container:nth-child(odd), .newsPane .container:nth-child(odd) a { color:#259e6f;}
+.newsPane a:hover {text-decoration:none;}
+.newsPane a span {text-decoration:underline;}
+.newsPane a span:hover {text-decoration:none;}
+
+.mainCol { float:left; width:660px;}
+
+.map { border:5px solid #000; clear:both;margin-bottom:15px;}
+.map img {display:block;}
+
+.blog h4.head { margin-bottom:14px; color:#000; font-size:11px;}
+.blog .container { width:320px; margin-bottom:20px;}
+.blog .containerSide {float:right;}/*for old browsers*/
+.blog .container:nth-child(odd) {float:right;}
+.blog .container .side { float:left; color:#7f7f7f; font-size:10px; padding-top:4px; margin-right:15px;}
+.blog .container .side img { display:block; padding-bottom:3px;}
+.blog .container .side p {border-bottom:1px solid #bfbfbf; padding-bottom:4px;}
+.blog .container .side p a {color:#7f7f7f; margin-right:3px;}
+.blog .container .side .comments { background:url(../images/icons/comments.png) left 4px no-repeat; padding-left:12px; margin-left:3px;}
+.blog .container .col { display:table; zoom:1;}
+.blog .container .col p {line-height:16px;}
+.blog .container .col h3 { padding-bottom:4px;}
+.blog .container .col h4 { padding-bottom:6px; line-height:15px;}
+
+.blog .paginator { border-top: 2px solid #BFBFBF; margin-top: -8px; padding: 17px 0 17px 182px;}
+.blog .paginator ul { width:450px;}
+.blog .paginator li { float: left; font-size: 12px; padding: 0 1px; }
+.blog .paginator li a { display: block; height: 19px; padding-top: 2px; text-align: center; text-decoration: none; width: 21px; }
+.blog .paginator li a:hover { background: none repeat scroll 0 0 #E5E4E4; }
+.blog .paginator li.cur a { background: none repeat scroll 0 0 #707070; color: #FFFFFF; }
+.blog .paginator li.first a, .blog .paginator li.prev a, .blog .paginator li.next a, .blog .paginator li.last a { background: url("../images/paginator_arrows.png") no-repeat scroll 0 0 transparent; padding-right: 4px; }
+.blog .paginator li.prev a { background-position: 0 -21px; padding-right: 8px; }
+.blog .paginator li.next a { background-position: 0 -42px; }
+.blog .paginator li.last a { background-position: 0 -63px; }
+.blog .paginator li.mid { margin-left: -6px; margin-right: 8px; }
+

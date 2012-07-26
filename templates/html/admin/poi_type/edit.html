@@ -1,0 +1,29 @@
+<form method="post">
+    {% raw xsrf_form_html() %}
+    <table>
+        <tr>
+            <th>
+                ID:
+            </th>
+            <td>
+                <input name="id" type="text" value="{{ type.id }}"/>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                Label:
+            </th>
+            <td>
+                <input name="label" type="text" value="{{ type.label }}"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Save" />
+            </td>
+            <td>
+                <input type="submit" value="Delete" />
+            </td>
+        </tr>
+    </table>
+</form>

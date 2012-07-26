@@ -1,0 +1,43 @@
+{% extends ../admin.html %}
+{% block main %}
+<ul>
+    <li>
+        <a href="/admin/poi/type/edit">Add type</a>
+    </li>
+</ul>
+<form>
+    <table>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Label
+            </th>
+            <th>
+                Actions
+            </th>
+        </tr>
+        {% for type in list %}
+        <tr>
+            <td>
+                {{ type.id }}
+            </td>
+            <td>
+                {{ type.label }}
+            </td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="/admin/poi/type/edit/{{ type.id }}">Edit</a>
+                    </li>
+                    <li>
+                        <a href="/admin/poi/type/delete/{{ type.id }}">Delete</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+        {% end %}
+    </table>
+</form>
+{% end %}
