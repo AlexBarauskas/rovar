@@ -1,0 +1,12 @@
+<div id="form_add_track" style="display:none">
+  {{form.as_p}}
+  <script>
+    function show_form_add_track(){$('#form_add_track').show();
+    rovar.enableAddTrack()};
+    function close_form_add_track(){
+    //$('#ok-btn-track-form').click(function(){$('#form_add_track').hide();});
+    }
+  </script>
+  <a id="ok-btn-track-form" href="#">ОКЭЙ</a>
+  <a id="ok-btn-save" href="javascript:rovar.saveTrack();">Захаваць</a>
+</div>

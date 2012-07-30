@@ -7,7 +7,8 @@ TRACK_TYPES = (('c', 'Commuting'),
                ('rr', 'Recreational (Road)'),
                ('rm', 'Recreational (MTB)'),
                ('sr', 'Sport (Road)'),
-               ('sm', 'Sport (MTB)')
+               ('sm', 'Sport (MTB)'),
+               ('o','Other')
                )
 POINTS_TYPES = (('s','Shop'),
                 ('p','Parking'),

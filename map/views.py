@@ -13,6 +13,15 @@ import time
 
 from map.models import Track, Point
 
+TRACK_TYPES = {'c' : 'Commuting',
+               'rr': 'Recreational (Road)',
+               'rm': 'Recreational (MTB)',
+               'sr': 'Sport (Road)',
+               'sm': 'Sport (MTB)',
+               'o' : 'Other',
+               }
+
+
 def all_tracks(request):
     tracks = Track.objects.all()
     data = []
@@ -20,6 +29,29 @@ def all_tracks(request):
         data.append(t.data)
     data = { "type": "FeatureCollection", "features":data}
     return HttpResponse(simplejson.dumps(data),mimetype='text/json')
+
+def add_track(request):
+    coordinates = request.POST.get('coordinates',None)
+    if not coordinates is None:
+        coordinates = simplejson.loads(coordinates)
+    video = request.POST.get('video',None)
+    description = request.POST.get('description',None)
+    name = request.POST.get('name',None)
+    type_track = request.POST.get('track_type',None)
+    
+    data = {"type": "Feature",
+            "properties": {"name": name,
+                           "description": description,
+                           "video" : video,
+                           "type": TRACK_TYPES[type_track]},
+            "geometry": {"type": "LineString",
+                         "coordinates": coordinates}}
+    Track(name=name,
+          description = description,
+          track_type = type_track,
+          video = '',
+          data = data).save()
+    return HttpResponse(simplejson.dumps(request.POST),mimetype='text/json')
     
 def all_points(request):
     data = Point.objects.all()
