@@ -31,9 +31,13 @@ rovar = {
         this.map.setView(minsk, 12).addLayer(new L.TileLayer(tiles, {attribution: copyright, maxZoom: 18}));
     },
 
+    clear_tracks: function(){
+	NEW_TRACK.clearLayers();
+    },
+
     _mousedown: function(e){
 	tmp.push([e.latlng.lng,e.latlng.lat]);
-	NEW_TRACK.clearLayers();
+	rovar.clear_tracks();
 	rovar.addTrack(data);				   
     },
 
@@ -132,8 +136,6 @@ $(document).ready(
     function(){
 	rovar.init();
 	rovar.loadTracks();
-	//$.get('map/tracks',function(response){T=response;tmp = response.features[0].geometry.coordinates;add_track();} , 'json');
-
 	rovar.loadPOIs();
 	
     });

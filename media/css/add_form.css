@@ -1,0 +1,46 @@
+.popup-form {
+    background-color: #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    padding: 10px;
+    width:400px;
+
+    display: none;
+    position: absolute;
+    z-index: 9999;
+    top:10px;
+    left:690px;
+}
+
+.popup-form>p>label  {
+    display: inline-block;
+    margin-left: 2%;
+    float:left;
+    width: 25%;
+}
+
+.popup-form>p>input, .popup-form>p>textarea {
+    width: 70%;
+}
+
+.popup-form>p {
+    margin-top:5px;
+}
+
+.btn {
+    background-color:#699;
+    border-radius:3px;
+    padding:4px;
+    text-decoration:none;
+}
+
+.btn:hover {
+    text-decoration:none;
+}
+
+.right {
+    float:right;
+}
+
+.clear {
+    clear:both;
+}

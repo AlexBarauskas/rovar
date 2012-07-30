@@ -34,9 +34,11 @@
     {% block top %}
         {% include "html/layout/form.html" %}
     {% endblock %}
-
-    <div class="map" id="map" style="width: 670px; height: 670px"></div>
-    {% include "html/map/form_add_track.html" %}
+    
+    <div style="position:relative">
+      <div class="map" id="map" style="width: 670px; height: 670px"></div>
+      {% include "html/map/form_add_track.html" %}
+    </div>
 
     {% block bottom %}
         {% include "html/layout/blog.html" %}

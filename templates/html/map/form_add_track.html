@@ -1,12 +1,26 @@
-<div id="form_add_track" style="display:none">
+<div id="form_add_track" class="popup-form">
   {{form.as_p}}
   <script>
     function show_form_add_track(){$('#form_add_track').show();
-    rovar.enableAddTrack()};
+    rovar.clear_tracks();
+    rovar.enableAddTrack();};
+
     function close_form_add_track(){
-    //$('#ok-btn-track-form').click(function(){$('#form_add_track').hide();});
-    }
+    rovar.saveTrack();
+    rovar.disableAddTrack();
+    rovar.clear_tracks();
+    rovar.loadTracks();
+    //rovar.loadPOIs();
+    $('#form_add_track').hide();
+    };
   </script>
-  <a id="ok-btn-track-form" href="#">ОКЭЙ</a>
-  <a id="ok-btn-save" href="javascript:rovar.saveTrack();">Захаваць</a>
+<!--  <a id="ok-btn-track-form" href="#">ОКЭЙ</a>0-->
+<hr/>
+  <a id="ok-btn-save" class="btn right" href="javascript:close_form_add_track();">Захаваць</a>
+  <div class="clear"></div>
 </div>
+
+<a id="btn-show-add" class="btn" href="javascript:show_form_add_track();">Дадаць маршрут</a>
+
+<div class="clear" style="margin-top:10px;"></div>
+
