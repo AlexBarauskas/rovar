@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html>
-<head>
+  <head>
     <title>{% block title %}Rovar 34Mag{% endblock %}</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link href="../static/css/main.css" rel="stylesheet" type="text/css">
@@ -12,67 +12,67 @@
     <script type="text/javaScript" src="/static/js/leaflet/leaflet-src.js"></script>
     <script type="text/javaScript" src="/static/js/main.js"></script>
     <script type="text/javascript">
-        $(document).ready(function () {
-            $('.newsPane').jScrollPane();
-        })
+      $(document).ready(function () {
+      $('.newsPane').jScrollPane();
+      })
     </script>
-</head>
-<body>
-<div class="wrapper">
+  </head>
+  <body>
+    <div class="wrapper">
 
 
-{% block header %}
-    {% include "html/layout/header.html" %}
-{% endblock %}
+      {% block header %}
+      {% include "html/layout/header.html" %}
+      {% endblock %}
 
-{% block sidebar %}
-    {% include "html/layout/sidebar.html" %}
-{% endblock %}
+      {% block sidebar %}
+      {% include "html/layout/sidebar.html" %}
+      {% endblock %}
 
-<div class="mainCol">
+      <div class="mainCol">
 
-    {% block top %}
+	{% block top %}
         {% include "html/layout/form.html" %}
-    {% endblock %}
-    
-    <div style="position:relative">
-      <div class="map" id="map" style="width: 670px; height: 670px"></div>
-      {% include "html/map/form_add_track.html" %}
-    </div>
+	{% endblock %}
+	
+	<div style="position:relative">
+	  <div class="map" id="map" style="width: 670px; height: 670px"></div>
+	  {% include "html/map/form_add_track.html" %}
+	</div>
 
-    {% block bottom %}
+	{% block bottom %}
         {% include "html/layout/blog.html" %}
-    {% endblock %}
-</div>
+	{% endblock %}
+      </div>
 
-<div class="clear he">
-    <!---->
-</div>
+      <div class="clear he">
+	<!---->
+      </div>
 
-</div>
-<div class="mainFooter">
-    <div class="col colA"><img src="../static/pictures/_tmp1.png" width="89" height="33" alt="alt"></div>
-    <div class="col colB"><a href="#"></a></div>
-    <div class="col colC clearfix">
+    </div>
+    <div class="mainFooter">
+      <div class="col colA"><img src="../static/pictures/_tmp1.png" width="89" height="33" alt="alt"></div>
+      <div class="col colB"><a href="#"></a></div>
+      <div class="col colC clearfix">
         <div class="panelA">
-            <p>E-mail: <a href="mailto:34rovar@gmail.com">34rovar@gmail.com</a></p>
+          <p>E-mail: <a href="mailto:34rovar@gmail.com">34rovar@gmail.com</a></p>
         </div>
         <div class="panelB"> <a href="#" class="twi"></a><!--
-  --><a href="#" class="facebook"></a><!--
-  --><a href="#" class="vk"></a><!--
-  --><a href="#" class="youtube"></a><!--
-  --><a href="#" class="rss"></a> </div>
-    </div>
-    <div class="col colD clearfix">
+							   --><a href="#" class="facebook"></a><!--
+												 --><a href="#" class="vk"></a><!--
+																 --><a href="#" class="youtube"></a><!--
+																				      --><a href="#" class="rss"></a> </div>
+      </div>
+      <div class="col colD clearfix">
         <ul>
-            <li><a href="#">МАРШРУТЫ</a></li>
-            <li><a href="#">БЛОГ </a></li>
+          <li><a href="#">МАРШРУТЫ</a></li>
+          <li><a href="#">БЛОГ </a></li>
         </ul>
         <ul>
-            <li><a href="#">ПРАЕКТ</a></li>
-            <li><a href="#">ПАРТНЁРЫ </a></li>
+          <li><a href="#">ПРАЕКТ</a></li>
+          <li><a href="#">ПАРТНЁРЫ </a></li>
         </ul>
+      </div>
     </div>
-</div>
-</body>
+  </body>
 </html>

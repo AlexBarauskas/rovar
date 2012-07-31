@@ -79,9 +79,11 @@ rovar = {
     },
 
     saveTrack: function(){
+        var self = this;
 	$.ajax({type: 'post',
 		dataType: 'json',
-		url:'map/add-track',success:function(data){T=data;},
+		async:false,
+		url:'map/add-track',success:function(data){self.errors_add_track=data.errors;},
 		data : {name : $('[name="name"]').val(),
 			description : $('[name="description"]').val(),
 			video : $('[name="video"]').val(),

@@ -12,6 +12,7 @@ from datetime import datetime
 import time
 
 from map.models import Track, Point
+from map.methods import change_data_add_track
 
 TRACK_TYPES = {'c' : 'Commuting',
                'rr': 'Recreational (Road)',
@@ -31,27 +32,23 @@ def all_tracks(request):
     return HttpResponse(simplejson.dumps(data),mimetype='text/json')
 
 def add_track(request):
-    coordinates = request.POST.get('coordinates',None)
-    if not coordinates is None:
-        coordinates = simplejson.loads(coordinates)
-    video = request.POST.get('video',None)
-    description = request.POST.get('description',None)
-    name = request.POST.get('name',None)
-    type_track = request.POST.get('track_type',None)
-    
-    data = {"type": "Feature",
-            "properties": {"name": name,
-                           "description": description,
-                           "video" : video,
-                           "type": TRACK_TYPES[type_track]},
+    errors, T = change_data_add_track(request)
+    if not errors:
+        errors = None
+        data = {"type": "Feature",
+                "properties": {"name": T['name'],
+                               "description": T['description'],
+                           "video" : T['video'],
+                           "type": TRACK_TYPES[T['track_type']]},
             "geometry": {"type": "LineString",
-                         "coordinates": coordinates}}
-    Track(name=name,
-          description = description,
-          track_type = type_track,
-          video = '',
-          data = data).save()
-    return HttpResponse(simplejson.dumps(request.POST),mimetype='text/json')
+                         "coordinates": T['coordinates']}}
+        Track(name=T['name'],
+              description = T['description'],
+              track_type = T['track_type'],
+              video = '',
+              data = data).save()
+    
+    return HttpResponse(simplejson.dumps({'errors':errors,'data':T}),mimetype='text/json')
     
 def all_points(request):
     data = Point.objects.all()

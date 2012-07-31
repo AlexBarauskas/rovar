@@ -18,8 +18,8 @@ POINTS_TYPES = (('s','Shop'),
 
 class Track(models.Model):
     name = models.CharField(u'Назва', max_length=64, null=False, default="")
-    description = models.CharField(u'Description', max_length=64, null=False, default="")
-    video = models.TextField('Вiдэо', default="")
+    description = models.TextField(u'Description', null=False, default="")
+    video = models.TextField(u'Вiдэо', default="")
     track_type = models.CharField(u'Type',
                                   max_length=2,
                                   choices=TRACK_TYPES,

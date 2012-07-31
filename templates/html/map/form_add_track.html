@@ -1,22 +1,53 @@
+<div id="mask"></div>
+
 <div id="form_add_track" class="popup-form">
   {{form.as_p}}
   <script>
-    function show_form_add_track(){$('#form_add_track').show();
-    rovar.clear_tracks();
-    rovar.enableAddTrack();};
+    function show_form_add_track(){
+        $('#mask').show();
+        $('#form_add_track').show();
+        //rovar.clear_tracks();
+        //rovar.enableAddTrack();
+    };
+
+    function btn_add_track(){
+        $('#add-btn-track-form').hide();
+        $('#ok-btn-save').show();
+        $('#mask').hide();
+        $('#form_add_track').animate({'left':'66%'});
+        rovar.clear_tracks();
+        rovar.enableAddTrack();
+    };
 
     function close_form_add_track(){
-    rovar.saveTrack();
-    rovar.disableAddTrack();
-    rovar.clear_tracks();
-    rovar.loadTracks();
-    //rovar.loadPOIs();
-    $('#form_add_track').hide();
+        $('#form_add_track>p>.error').remove();
+        rovar.saveTrack();
+        if(rovar.errors_add_track){
+            for(key in rovar.errors_add_track){
+                
+                $('[name="'+key+'"]').parent().append('<p class="error">'+rovar.errors_add_track[key]+'</p>');
+                }
+        }
+        else{
+            rovar.disableAddTrack();
+            rovar.clear_tracks();
+            rovar.loadTracks();
+            $('#form_add_track').hide();
+            $('#add-btn-track-form').show();
+            $('#ok-btn-save').hide();
+        }
     };
+    $(document).ready(function(){
+    $('#form_add_track>p>input').change(function(e){
+              if($(e.target).val()!='')
+                  $(e.target).parent().find('.error').remove();
+             });
+    });
+    
   </script>
-<!--  <a id="ok-btn-track-form" href="#">ОКЭЙ</a>0-->
 <hr/>
-  <a id="ok-btn-save" class="btn right" href="javascript:close_form_add_track();">Захаваць</a>
+  <a id="add-btn-track-form" class="btn right" href="javascript:btn_add_track();">Азначыць маршрут на карце</a>
+  <a id="ok-btn-save" class="btn right" style="display:none" href="javascript:close_form_add_track();">Захаваць</a>
   <div class="clear"></div>
 </div>
 
