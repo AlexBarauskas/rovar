@@ -21,4 +21,15 @@
   --><a href="#" class="youtube"></a><!--
   --><a href="#" class="rss"></a> </div>
     </div>
+    <div>
+      {% if user %}
+      Вы: <a href="#">{{user.nickname}}</a>
+      <br/>
+      <a href="#">{{user.email}}</a>
+      <br/>
+      <a href="{% url logout %}"> Выйсцi </a>
+      {% else %}
+      <a href="{% url login %}"> Увайсцi </a>
+      {% endif %}
+    </div>
 </div>

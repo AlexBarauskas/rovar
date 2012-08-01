@@ -14,6 +14,9 @@ import time
 from map.models import Track, Point
 from map.methods import change_data_add_track
 
+from account.decorators import get_user
+
+
 TRACK_TYPES = {'c' : 'Commuting',
                'rr': 'Recreational (Road)',
                'rm': 'Recreational (MTB)',

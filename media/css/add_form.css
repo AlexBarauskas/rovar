@@ -59,3 +59,21 @@
 .error {
     color:red;
 }
+
+.form-popup-close { 
+    background: none repeat scroll 0 0 transparent;
+    color: #444444 !important;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 0;
+    width: 20px;
+    z-index: 998;
+}
+.form-popup-close:hover {
+    text-decoration:none;
+}

@@ -85,6 +85,7 @@ rovar = {
 		async:false,
 		url:'map/add-track',success:function(data){self.errors_add_track=data.errors;},
 		data : {name : $('[name="name"]').val(),
+			email:$('[name="email"]').val(),
 			description : $('[name="description"]').val(),
 			video : $('[name="video"]').val(),
 			track_type : $('[name="track_type"]').val(),

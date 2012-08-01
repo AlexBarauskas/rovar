@@ -6,7 +6,14 @@ from django.template import RequestContext
 
 from map.forms import AddTrackForm
 
+from account.decorators import login_required, get_user
+from account.models import Account
+
 def index(request):
+    user = request.session.get('user',None)
+    if not user is None:
+        user = Account.objects.get(id=user)
     return render_to_response('html/main.html',
-                              {'form': AddTrackForm()},
+                              {'form': AddTrackForm(),
+                               'user':user},
                               context_instance=RequestContext(request))
