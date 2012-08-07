@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{% block title %}Rovar 34Mag | admin{% endblock %}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="/static/css/main.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/admin.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/leaflet.css" rel="stylesheet" type="text/css">
+    <script type="text/javaScript" src="/static/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javaScript" src="/static/js/admin-actions.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="mainHeader clearfix">
+	<div>
+	  {% if user %}
+	  Вы: <a href="#">{{user.nickname}}</a>
+	  <br/>
+	  <a href="#">{{user.email}}</a>
+	  <br style="margin-bottom:5px;"/>
+	  <a class="btn" href="{% url logout %}"> Выйсцi </a>
+	  {% else %}
+	  <a class="btn" href="{% url login %}"> Увайсцi </a>
+	  {% endif %}
+	</div>
+      </div>
+      <div class="admin-navigator">
+	{% block navigator %}
+        <a href={% url admin_index %}>home </a>
+	{% endblock navigator %}
+      </div>
+      <div class="content">
+	{% block content %}
+	{% endblock content %}
+      </div>
+    </div>
+  </body>
+</html>

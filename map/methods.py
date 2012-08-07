@@ -33,8 +33,10 @@ def change_data_add_track(request):
         errors['description'] = ['Абавязковае поле!']
     if track_type is None:
         errors['track_type'] = ['Абавязковае поле!']
-
-    return [errors,{'coordinates':coordinates,
+    if errors.get('email',None) is None:
+        description = '%s<hr/>%s'%(description,user)
+    return [errors,{'owner':user,
+                    'coordinates':coordinates,
                     'name':name,
                     'description':description,
                     'video':video,

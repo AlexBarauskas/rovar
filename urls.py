@@ -9,6 +9,7 @@ urlpatterns = patterns('',
                        (r'^$','middleware.index'),
 #                       (r'^admin/', include(admin.site.urls)),
                        (r'^accounts/',include('account.urls')),
+                       (r'^admin/',include('rovar_admin.urls')),
                        (r'^map/',include('map.urls')),
 
 #                       url(r'^accounts/login/$','django.contrib.auth.views.login',

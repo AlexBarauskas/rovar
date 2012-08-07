@@ -1,0 +1,21 @@
+{% extends 'html/account/base.html' %}
+
+
+{% block content %}
+<ul class="menu">
+  <li>
+    <a href="{% url account_main_page %}">Я</a>
+  </li>
+  <li class="active">
+    <a href="{% url account_my_tracks %}">Мае маршруты</a>
+  </li>
+  <li>
+    <a href="{% url account_my_points %}">Мае пункты</a>
+  </li>
+</ul>
+
+<div class=" clear"></div>
+<div class="inner-content">
+___
+</div>
+{% endblock content %}

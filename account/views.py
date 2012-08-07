@@ -8,19 +8,27 @@ from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
 
-from django.db.models import Max, Min
-
 from account.models import Account
-import base64
-from datetime import datetime
-import time
+from account.decorators import login_required
 
-
+@login_required
 def main_page(request):
-    return HttpResponse('Account_index')
-    #return render_to_response('html/accounts.html',
-    #                          context,
-    #                          context_instance=RequestContext(request))
+    return render_to_response('html/account/index.html',
+                              {},
+                              context_instance=RequestContext(request))
+
+@login_required
+def my_tracks(request):
+    return render_to_response('html/account/my-tracks.html',
+                              {},
+                              context_instance=RequestContext(request))
+
+@login_required
+def my_points(request):
+    return render_to_response('html/account/my-points.html',
+                              {},
+                              context_instance=RequestContext(request))
+
 
 def login(request):
     return HttpResponseRedirect(users.create_login_url('/accounts/login_'))

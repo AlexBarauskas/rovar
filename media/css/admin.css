@@ -1,0 +1,47 @@
+table {
+    border : solid 2px #CCC;
+    width:90%;
+    margin:0 5%;
+}
+
+th {
+    font-weight: normal;
+    padding:3px;
+}
+
+tr{
+    border-bottom : solid 1px #CCC;
+}
+
+thead {
+    border-bottom : solid 2px #CCC;
+}
+
+thead>tr>th {
+    font-weight: bold;
+}
+
+.list-page > li {
+    border-bottom: 1px solid #CCCCCC;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.list-page {
+    background-color:#DDD;
+    border-radius:5px;
+    border: solid 2px #BBB;
+}
+
+.admin-navigator {
+    background-color: #DDD;
+    padding:3px;
+    margin-bottom:10px;
+}
+
+.btn {
+    background-color: #CCCCCC;
+    color: #111111 !important;
+    border: 2px solid #999;
+}

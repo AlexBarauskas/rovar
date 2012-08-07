@@ -14,9 +14,6 @@ import time
 from map.models import Track, Point
 from map.methods import change_data_add_track
 
-from account.decorators import get_user
-
-
 TRACK_TYPES = {'c' : 'Commuting',
                'rr': 'Recreational (Road)',
                'rm': 'Recreational (MTB)',
@@ -45,7 +42,8 @@ def add_track(request):
                            "type": TRACK_TYPES[T['track_type']]},
             "geometry": {"type": "LineString",
                          "coordinates": T['coordinates']}}
-        Track(name=T['name'],
+        Track(owner=T['owner'],
+              name=T['name'],
               description = T['description'],
               track_type = T['track_type'],
               video = '',

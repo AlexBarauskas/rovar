@@ -32,7 +32,8 @@ INSTALLED_APPS = (
     'djangoappengine',
     'bootstrap_toolkit',
     'account',
-    'map'
+    'map',
+    'rovar_admin',
 )
 
 MIDDLEWARE_CLASSES = (

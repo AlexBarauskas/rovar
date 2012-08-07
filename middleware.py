@@ -6,7 +6,7 @@ from django.template import RequestContext
 
 from map.forms import AddTrackForm
 
-from account.decorators import login_required, get_user
+from account.decorators import login_required
 from account.models import Account
 
 def index(request):

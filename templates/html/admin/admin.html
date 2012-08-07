@@ -1,5 +1,12 @@
-<h1>ADMIN</h1>
+{% extends 'html/admin/base.html' %}
 
-{% block main %}
-
-{% end %}
+{% block content %}
+<ul class="list-page">
+  <li>
+    <a href="{% url admin_list_tracks %}">Спiс усiх маршрутау</a>
+  </li>
+  <li>
+    <a href="{% url admin_list_points %}">Спiс усiх пунктау</a>
+  </li>
+</ul>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'html/account/base.html' %}
+
+
+{% block content %}
+<ul class="menu">
+  <li class="active">
+    <a href="{% url account_main_page %}">Я</a>
+  </li>
+  <li>
+    <a href="{% url account_my_tracks %}">Мае маршруты</a>
+  </li>
+  <li>
+    <a href="{% url account_my_points %}">Мае пункты</a>
+  </li>
+</ul>
+
+<div class=" clear"></div>
+<div class="inner-content">
+  <table class="myinfo">
+    <tbody>
+      <tr>
+	<td>Iмя:</td>
+	<td>{{user.username}}</td>
+      </tr>
+      <tr>
+	<td>Email:</td>
+	<td>{{user.email}}</td>
+      </tr>
+
+      <tr>
+	<td>Колькасць даданых маршрутаў:</td>
+	<td>-</td>
+      </tr>
+      <tr>
+	<td>Колькасць даданых пунктаў:</td>
+	<td>-</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock content %}
