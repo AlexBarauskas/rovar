@@ -1,0 +1,15 @@
+{% extends 'html/admin/base.html' %}
+
+{% block navigator %}
+        {{block.super}}
+        > <a href={% url admin_list_points %}>points </a>
+        > <a href={% url admin_add_post %}>add post </a>
+{% endblock navigator %}
+
+{% block content %}
+<form method="POST">
+{{form.as_p}}
+<button value="Save">Save</button>
+</form>
+{% endblock content %}
+

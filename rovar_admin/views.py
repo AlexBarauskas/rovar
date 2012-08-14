@@ -8,6 +8,9 @@ from django.utils import simplejson
 from account.models import Account
 from map.models import Track, Point
 from map.methods import change_data_add_track
+from blog.models import Post
+from blog.forms import AddPost
+
 
 def index(request):
     user = request.session.get('user',None)
@@ -70,3 +73,35 @@ def delete_points(request):
         ids = simplejson.loads(ids)
         Point.objects.filter(id__in=ids).delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def list_posts(request):
+    user = request.session.get('user',None)
+    if not user is None:
+        user = Account.objects.get(id=user)
+    if not user.is_admin:
+        return HttpResponseNotFound()
+    
+    posts = Post.objects.all()
+    return render_to_response('html/admin/list_posts.html',
+                              {'user':user,
+                               'posts': posts},
+                              context_instance=RequestContext(request))
+
+def add_post(request):
+    user = request.session.get('user',None)
+    if not user is None:
+        user = Account.objects.get(id=user)
+    if not user.is_admin:
+        return HttpResponseNotFound()
+
+    if request.method == 'POST':
+        form = AddPost(request.POST)
+        if form.is_valid():
+            form.save()
+    else:
+        form = AddPost()
+    return render_to_response('html/admin/add-post.html',
+                              {'user':user,
+                               'form': form},
+                              context_instance=RequestContext(request))

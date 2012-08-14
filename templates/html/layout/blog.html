@@ -1,102 +1,20 @@
 <div class="blog">
     <h4 class="head"><span>БЛОГ</span></h4>
     <div class="clear"></div>
+
+    {% for P in posts %}
     <div class="container containerSide clearfix">
         <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
             <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
         </div>
         <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
+            <h3><a href="#">{{P.shor_name}}</a></h3>
+            <h4>{{P.name}}</h4>
+            <p><a href="#">{{P.text}}</a></p>
         </div>
     </div>
-    <!--end container-->
-    <div class="container clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
-        </div>
-        <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
-        </div>
-    </div>
-    <!--end container-->
-    <div class="container containerSide clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
-        </div>
-        <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
-        </div>
-    </div>
-    <!--end container-->
-    <div class="container clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
-        </div>
-        <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
-        </div>
-    </div>
-    <!--end container-->
-    <div class="container containerSide clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
-        </div>
-        <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
-        </div>
-    </div>
-    <!--end container-->
-    <div class="container clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
-        </div>
-        <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
-        </div>
-    </div>
-    <!--end container-->
-    <div class="container containerSide clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
-        </div>
-        <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
-        </div>
-    </div>
-    <!--end container-->
-    <div class="container clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
-        </div>
-        <div class="col">
-            <h3><a href="#">Стоп-кадры</a></h3>
-            <h4>2011 год у <br>
-                фотаздымках</h4>
-            <p><a href="#">Пратэсты, лоўкосты, секс і смерць - усё, што варта памятаць пра 2011 год, на адной старонцы</a></p>
-        </div>
-    </div>
-    <!--end container-->
+    {% endfor %}
+    <div class="clear"></div>
     <div class="paginator">
         <ul class="clearfix">
             <li class="first"><a href="#"></a></li>

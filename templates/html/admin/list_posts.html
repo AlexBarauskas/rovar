@@ -1,0 +1,42 @@
+{% extends 'html/admin/base.html' %}
+
+{% block navigator %}
+        {{block.super}}
+        > <a href={% url admin_list_posts %}>posts </a>
+{% endblock navigator %}
+
+{% block content %}
+<table class="campaign-change">
+  <thead>
+    <tr>
+      <th>
+	<input type="checkbox" name="action-all">
+      </th>
+      <th>Id</th>
+      <th>Owner</th>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for T in posts %}
+    <tr>
+      <th>
+	<input type="checkbox" name="action" value="{{T.id}}">
+      </th>
+      <th>{{T.id}}</th>
+      <th>{{T.owner}}</th>
+      <th>{{T.short_name}}</th>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="modal-footer footer" style="margin-top:30px">
+  <a id="btn-delete" class="btn btn-danger" href="{% url admin_delete_points %}" title="delete all points">delete</a>
+  <a id="btn-delete-seleted" href="javascript:;" class="btn btn-danger" title="delete selected points">delete selected</a>
+
+  <a id="btn-delete-seleted" href="{% url admin_add_post %}" class="btn btn-danger" title="delete selected points" style="float:right;background-color: #9CF;">add</a>
+</div>
+
+{% endblock content %}
+

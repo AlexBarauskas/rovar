@@ -8,12 +8,17 @@ from map.forms import AddTrackForm
 
 from account.decorators import login_required
 from account.models import Account
+from blog.models import Post
 
 def index(request):
     user = request.session.get('user',None)
     if not user is None:
         user = Account.objects.get(id=user)
+    posts = Post.objects.all().order_by('-created')
+    if posts.count>2:
+        posts = posts[:2]
     return render_to_response('html/main.html',
                               {'form': AddTrackForm(),
-                               'user':user},
+                               'user':user,
+                               'posts':posts},
                               context_instance=RequestContext(request))

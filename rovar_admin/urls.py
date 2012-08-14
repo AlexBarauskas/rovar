@@ -8,4 +8,9 @@ urlpatterns = patterns('rovar_admin.views',
                        url(r'^tracks/delete$','delete_tracks', name='admin_delete_tracks'),
                        url(r'^points$','list_points', name='admin_list_points'),
                        url(r'^points/delete$','delete_points', name='admin_delete_points'),
+
+                       url(r'^posts$','list_posts', name='admin_list_posts'),
+                       url(r'^posts/add$','add_post', name='admin_add_post'),
+                       #url(r'^points/delete$','delete_points', name='admin_delete_points'),
+
                        )
