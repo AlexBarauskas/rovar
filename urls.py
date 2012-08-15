@@ -11,6 +11,7 @@ urlpatterns = patterns('',
                        (r'^accounts/',include('account.urls')),
                        (r'^admin/',include('rovar_admin.urls')),
                        (r'^map/',include('map.urls')),
+                       (r'^blog/',include('blog.urls')),
 
 #                       url(r'^accounts/login/$','django.contrib.auth.views.login',
 #                           { 'template_name' : 'html/login.html',

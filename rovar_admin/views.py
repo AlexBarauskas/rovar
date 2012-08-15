@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import get_object_or_404, render_to_response
 from django.template import RequestContext
 from django.utils import simplejson
+from django.core.urlresolvers import reverse
 
 from account.models import Account
 from map.models import Track, Point
@@ -35,19 +36,6 @@ def list_tracks(request):
                                'tracks': tracks},
                               context_instance=RequestContext(request))
 
-def delete_tracks(request):
-    user = request.session.get('user',None)
-    if not user is None:
-        user = Account.objects.get(id=user)
-    if not user.is_admin:
-        return HttpResponseNotFound()
-
-    ids = request.GET.get('ids',None)
-    if ids:
-        ids = simplejson.loads(ids)
-        Track.objects.filter(id__in=ids).delete()
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
-    
 def list_points(request):
     user = request.session.get('user',None)
     if not user is None:
@@ -60,21 +48,6 @@ def list_points(request):
                               {'user':user,
                                'points': points},
                               context_instance=RequestContext(request))
-
-def delete_points(request):
-    user = request.session.get('user',None)
-    if not user is None:
-        user = Account.objects.get(id=user)
-    if not user.is_admin:
-        return HttpResponseNotFound()
-
-    ids = request.GET.get('ids',None)
-    if ids:
-        ids = simplejson.loads(ids)
-        Point.objects.filter(id__in=ids).delete()
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
 def list_posts(request):
     user = request.session.get('user',None)
     if not user is None:
@@ -88,20 +61,54 @@ def list_posts(request):
                                'posts': posts},
                               context_instance=RequestContext(request))
 
-def add_post(request):
+def edit_add_post(request,post_id=None):
     user = request.session.get('user',None)
     if not user is None:
         user = Account.objects.get(id=user)
     if not user.is_admin:
         return HttpResponseNotFound()
 
+    page_name = 'add post'
+    if not post_id is None:
+        param = {'instance':get_object_or_404(Post,id=post_id)}
+        page_name = 'edit post'
+    else:
+        param = {}
     if request.method == 'POST':
-        form = AddPost(request.POST)
+        form = AddPost(request.POST,**param)
         if form.is_valid():
             form.save()
+            return HttpResponseRedirect(reverse('admin_list_posts'))
     else:
-        form = AddPost()
+        form = AddPost(**param)
     return render_to_response('html/admin/add-post.html',
                               {'user':user,
-                               'form': form},
+                               'form': form,
+                               'page_name' : page_name},
                               context_instance=RequestContext(request))
+
+
+INSTANCE = {
+    'post':Post,
+    'track':Track,
+    'point':Point
+    }
+def delete_objects(request,name):
+    user = request.session.get('user',None)
+    if not user is None:
+        user = Account.objects.get(id=user)
+    if not user.is_admin:
+        return HttpResponseNotFound()
+
+    table = INSTANCE.get(name,None)
+    if not table is None:
+        ids = request.GET.get('ids',None)
+        if ids:
+            ids = simplejson.loads(ids)
+            table.objects.filter(id__in=ids).delete()
+        else:
+            table.objects.all().delete()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        
+        
+        

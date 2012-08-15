@@ -25,15 +25,15 @@
       </th>
       <th>{{T.id}}</th>
       <th>{{T.owner}}</th>
-      <th>{{T.short_name}}</th>
+      <th><a href="{% url admin_edit_post T.id %}" title="Рэдагаваць">{{T.short_name}}</a></th>
     </tr>
     {% endfor %}
   </tbody>
 </table>
 
 <div class="modal-footer footer" style="margin-top:30px">
-  <a id="btn-delete" class="btn btn-danger" href="{% url admin_delete_points %}" title="delete all points">delete</a>
-  <a id="btn-delete-seleted" href="javascript:;" class="btn btn-danger" title="delete selected points">delete selected</a>
+  <a id="btn-delete" class="btn btn-danger" href="{% url admin_delete_objects 'post' %}" title="delete all posts">delete</a>
+  <a id="btn-delete-seleted" href="javascript:;" class="btn btn-danger" title="delete selected posts">delete selected</a>
 
   <a id="btn-delete-seleted" href="{% url admin_add_post %}" class="btn btn-danger" title="delete selected points" style="float:right;background-color: #9CF;">add</a>
 </div>

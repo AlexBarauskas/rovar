@@ -4,8 +4,9 @@
 
     {% for P in posts %}
     <div class="container containerSide clearfix">
-        <div class="side"> <a href="#"><img src="../static/pictures/_tmp4.jpg" width="150" height="100" alt="pic"></a>
-            <p><a href="#">Danila Berencef</a> | <a href="#" class="comments">12</a></p>
+        <div class="side"> 
+	  <a href="#"><img src="{{P.img_url}}" width="150" alt="pic"></a>
+          <p>{{P.owner}} | <a id="like-{{P.id}}" href="javascript:AddLike({{P.id}},'{% url add-like P.id %}');" class="comments">{{P.like}}</a></p>
         </div>
         <div class="col">
             <h3><a href="#">{{P.shor_name}}</a></h3>

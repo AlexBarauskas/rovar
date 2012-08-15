@@ -2,8 +2,8 @@
 
 {% block navigator %}
         {{block.super}}
-        > <a href={% url admin_list_points %}>points </a>
-        > <a href={% url admin_add_post %}>add post </a>
+        > <a href={% url admin_list_posts %}>posts </a>
+        > <a href={% url admin_add_post %}>{{page_name}} </a>
 {% endblock navigator %}
 
 {% block content %}

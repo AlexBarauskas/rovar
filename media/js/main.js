@@ -132,8 +132,15 @@ function add_track(){
     //tracksGeojsonLayer.addGeoJSON(tmp_response);
 };
 
-
-
+function AddLike(id,url){
+	$.ajax({type: 'get',
+		dataType: 'json',
+		async:false,
+		url:url,
+		success:function(data){if(!data.errors)$("#like-"+id.toString()).html(data.like);}
+	       });
+    
+};
 
 $(document).ready(
     function(){
