@@ -11,8 +11,8 @@ from account.models import Account
 from datetime import datetime
 import time
 
-from map.models import Track, Point
-from map.methods import change_data_add_track
+from map.models import Track, Point, DIC_POINTS_TYPES
+from map.methods import change_data_add_track, change_data_add_point
 
 TRACK_TYPES = {'c' : 'Commuting',
                'rr': 'Recreational (Road)',
@@ -46,9 +46,13 @@ def add_track(request):
               name=T['name'],
               description = T['description'],
               track_type = T['track_type'],
-              video = '',
+              video = T['video'],
               data = data).save()
-    
+    try:
+        T['owner'] = T['owner'].email
+    except:
+        T['owner'].request.POST.get('email')
+
     return HttpResponse(simplejson.dumps({'errors':errors,'data':T}),mimetype='text/json')
     
 def all_points(request):
@@ -59,7 +63,33 @@ def all_points(request):
     data = { "type": "FeatureCollection", "features":points}
     return HttpResponse(simplejson.dumps(data),mimetype='text/json')
 
+def add_point(request):
+    data = {}
+    errors, P = change_data_add_point(request)
+    if not errors:
+        errors = None
+        data = {"type": "Feature",
+                "properties": {"name": P['name'],
+                               "description": P['description'],
+                               "type": DIC_POINTS_TYPES[P['point_type']]},
+                "geometry": {"type": "Point",
+                             "coordinates": P['place_point']}}
+        Point(owner=P['owner'],
+              name=P['name'],
+              description = P['description'],
+              point_type = P['point_type'],
+              place_point = data).save()
+    try:
+        P['owner'] = P['owner'].email
+    except:
+        P['owner'].request.POST.get('email')
+    return HttpResponse(simplejson.dumps({'errors':errors,'data':P}),mimetype='text/json')
 
+
+
+
+
+## FOR TESTING
 if Point.objects.count()==0:
     Point(name='test_point',
           description = 'test_point',

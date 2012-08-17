@@ -1,0 +1,146 @@
+{% extends 'base-admin.html' %}
+
+{% block extrahead %}
+<script type="text/javaScript" src="/static/js/jquery-ui.min.js"></script>
+{% endblock extrahead %}
+
+{% block navigator %}
+{{block.super}}
+> <a href={% url admin_list_posts %}>posts </a>
+> <a href={% url admin_add_post %}>{{page_name}} </a>
+{% endblock navigator %}
+
+{% block content %}
+<form method="POST">
+  {{form.as_p}}
+
+<div class="img-panel">
+  <div id="load-box" class="modal-box">
+    <iframe scroll="no" src="http://image-storage.appspot.com/api/load-img?api_key=482271c781f26f47a9c7c7ef38e6d8adb70676a2" ></iframe>
+  </div>
+  <div id="list-img" class="modal-box">
+    <div class="content">
+    </div>
+    <div class="form-actions" style="margin-bottom:0">
+      <div id="reload" class="btn btn-primary">Обновить</div>
+    </div>
+  </div>
+
+</div>
+
+  <div class="clear"></div>
+  <button value="Save">Save</button>
+</form>
+
+<style>
+iframe {
+width:460px;
+height:175px;
+overflow: hidden;
+border:none;
+margin-left:-90px;
+}
+
+.modal-box {
+    border: 2px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 5px 5px 8px #555555;
+    position: relative;
+    z-index: 990;
+    overflow: hidden;
+}
+
+#load-box {
+    height: 150px;
+    padding-top: 10px;
+    width: 350px;
+    float:right;
+    margin-bottom:30px;
+}
+
+#list-img {
+    width: 350px;
+    float:right;
+    height:auto;
+}
+
+#list-img img {
+    max-hieght:50px;
+    max-width:50px;
+}
+
+#id_text{
+    float: left;
+    height: 400px;
+    width: 530px;
+}
+
+</style>
+
+<script>
+//Cross-domain "ajax call" using script tag insertion
+function getJsonXd(url, params,callback) {
+      var callbackName = '__callback'+'_'+parseInt(Math.random()*1000).toString();
+      var callbackWrapper = function(data){
+	callback(data);
+	window[callbackName] = undefined;
+	try{
+	  delete window[callbackName];
+	}catch(e){}
+      };
+      window[callbackName] = callbackWrapper;
+    params = jQuery.extend({'callback':callbackName},
+			   params);
+    var _call_js = document.createElement('script'); 
+    _call_js.type = 'text/javascript'; 
+    _call_js.async = true;
+    _call_js.src = url + '?' + jQuery.param(params, true);
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(_call_js, s);
+  };
+
+var tmp;
+function _get_urls(data){
+    tmp=data;
+    var box = $('#list-img>.content');
+    box.html('');
+    for(var i=data.length-1;i>-1;i--){
+        box.append('<img class="ui-draggable" src="'+data[i]+'"/>')
+    }
+    $('#list-img img').draggable({helper:'clone',
+                                 opacity : 0.3});
+    
+};
+
+function get_urls(){
+    getJsonXd("http://image-storage.appspot.com/api/get-urls.js",
+             {api_key:'482271c781f26f47a9c7c7ef38e6d8adb70676a2'},
+              _get_urls);
+};
+
+$(document).ready(function(){
+   get_urls();
+   $('#reload').click(get_urls);
+
+   $('#id_text').droppable({
+                //tolerance : 'fit',
+                //accept : '#list-img img',
+                drop : function(event, ui) {
+                        var tag = ui.draggable.attr('src');
+                        tag = ' <img class="ui-draggable" src="'+tag+'"/> '
+                        var text,x0,x1;
+                        x0 = this.selectionStart;
+                        x1 = this.selectionEnd;
+                        text = $(this).val();
+tmp = event;
+                        if(text!='')
+                            $(this).val(text.substr(0,x0)+tag+text.substr(x1,text.length))
+                         else
+                            $(this).val(tag);
+
+                }
+        });
+});
+</script>
+
+{% endblock content %}
+

@@ -1,4 +1,4 @@
-{% extends 'html/admin/base.html' %}
+{% extends 'base-admin.html' %}
 
 {% block navigator %}
         {{block.super}}
@@ -13,8 +13,9 @@
 	<input type="checkbox" name="action-all">
       </th>
       <th>Id</th>
-      <th>Owner</th>
       <th>Name</th>
+      <th>Owner</th>
+      <th>Created</th>
     </tr>
   </thead>
   <tbody>
@@ -24,8 +25,9 @@
 	<input type="checkbox" name="action" value="{{T.id}}">
       </th>
       <th>{{T.id}}</th>
-      <th>{{T.owner}}</th>
       <th><a href="{% url admin_edit_post T.id %}" title="Рэдагаваць">{{T.short_name}}</a></th>
+      <th>{{T.owner}}</th>
+      <th>{{T.created}}<th>
     </tr>
     {% endfor %}
   </tbody>

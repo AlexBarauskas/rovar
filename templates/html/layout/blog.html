@@ -9,9 +9,8 @@
           <p>{{P.owner}} | <a id="like-{{P.id}}" href="javascript:AddLike({{P.id}},'{% url add-like P.id %}');" class="comments">{{P.like}}</a></p>
         </div>
         <div class="col">
-            <h3><a href="#">{{P.shor_name}}</a></h3>
+            <h3><a href="#">{{P.short_name}}</a></h3>
             <h4>{{P.name}}</h4>
-            <p><a href="#">{{P.text}}</a></p>
         </div>
     </div>
     {% endfor %}

@@ -48,7 +48,7 @@ class Track(models.Model):
 class Point(models.Model):
     owner = models.ForeignKey(Account, null=True)    
     name = models.CharField(u'Назва', max_length=64, null=False, default="")
-    description = models.CharField(u'Description', max_length=64, null=False, default="")
+    description = models.TextField(u'Description', null=False, default="")
     point_type = models.CharField(u'Type',
                                   max_length=1,
                                   choices=POINTS_TYPES,

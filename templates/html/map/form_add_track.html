@@ -1,4 +1,4 @@
-<div id="mask"></div>
+<div class="mask"></div>
 
 <div id="form_add_track" class="popup-form">
   <a class="form-popup-close" href="javascript:close_form_add_track(false);">x</a>
@@ -7,62 +7,29 @@
     <input id="id_email" type="text" maxlength="64" name="email" value="{{user.email}}" disabled="" style="background-color:lightYellow">
   </p>
   {{form.as_p}}
-  <script>
-    function show_form_add_track(){
-        $('#mask').show();
-        $('#form_add_track').show();
-        //rovar.clear_tracks();
-        //rovar.enableAddTrack();
-    };
-
-    function btn_add_track(){
-        $('#add-btn-track-form').hide();
-        $('#ok-btn-save').show();
-        $('#mask').hide();
-        $('#form_add_track').animate({'left':'66%'});
-        rovar.clear_tracks();
-        rovar.enableAddTrack();
-    };
-
-    function close_form_add_track(save){
-        $('#form_add_track>p>.error').remove();
-        if(save)
-            rovar.saveTrack();
-        else{
-            rovar.errors_add_track=null;
-            $('#mask').hide();
-            }
-        if(rovar.errors_add_track){
-            for(key in rovar.errors_add_track){
-                
-                $('[name="'+key+'"]').parent().append('<p class="error">'+rovar.errors_add_track[key]+'</p>');
-                }
-        }
-        else{
-            rovar.disableAddTrack();
-            rovar.clear_tracks();
-            rovar.loadTracks();
-            $('#form_add_track').hide();
-            $('#add-btn-track-form').show();
-            $('#ok-btn-save').hide();
-        }
-    };
-
-    $(document).ready(function(){
-    $('#form_add_track>p>input').change(function(e){
-              if($(e.target).val()!='')
-                  $(e.target).parent().find('.error').remove();
-             });
-    });
-    
-  </script>
-<hr/>
+  <hr/>
   <a id="add-btn-track-form" class="btn right" href="javascript:btn_add_track();">Азначыць маршрут на карце</a>
   <a id="ok-btn-save" class="btn right" style="display:none" href="javascript:close_form_add_track(true);">Захаваць</a>
   <div class="clear"></div>
 </div>
-
 <a id="btn-show-add" class="btn" href="javascript:show_form_add_track();">Дадаць маршрут</a>
-
 <div class="clear" style="margin-top:10px;"></div>
+
+<div id="form_add_point" class="popup-form">
+  <a class="form-popup-close" href="javascript:close_form_add_point(false);">x</a>
+  <p>
+    <label for="id_point-email">Email:</label>
+    <input id="id_point-email" type="text" maxlength="64" name="point-email" value="{{user.email}}" disabled="" style="background-color:lightYellow">
+  </p>
+  {{form_point.as_p}}
+  <hr/>
+  <a id="add-btn-point-form" class="btn right" href="javascript:btn_add_point();">Азначыць пункт на карце</a>
+  <a id="ok-btn-point-save" class="btn right" style="display:none" href="javascript:close_form_add_point(true);">Захаваць</a>
+  <div class="clear"></div>
+</div>
+<a id="btn-point-show-add" class="btn" href="javascript:show_form_add_point();">Дадаць пункт</a>
+<div class="clear" style="margin-top:10px;"></div>
+
+<script type="text/javaScript" src="/static/js/map.js"></script>
+
 

@@ -37,9 +37,15 @@ rovar = {
 
     _mousedown: function(e){
 	tmp.push([e.latlng.lng,e.latlng.lat]);
-	rovar.clear_tracks();
+	//rovar.clear_tracks();
 	rovar.addTrack(data);				   
     },
+
+    _mousedown_point: function(e){
+	tmp = [e.latlng.lng,e.latlng.lat];
+	//rovar.addTrack(data);				   
+    },
+
 
     enableAddTrack: function(){
 	reset_tmp();
@@ -47,8 +53,19 @@ rovar = {
 	this.map.on('mousedown',this._mousedown);
     },
 
+    enableAddPoint: function(){
+	reset_tmp();
+        var self = this;
+	this.map.on('mousedown',this._mousedown_point);
+    },
+
+
     disableAddTrack: function(){
 	this.map.off('mousedown',this._mousedown);
+    },
+
+    disableAddPoint: function(){
+	this.map.off('mousedown',this._mousedown_point);
     },
 
     addTrack: function(response){
@@ -94,21 +111,41 @@ rovar = {
 	       });
     },
 
+    savePoint: function(){
+        var self = this;
+	$.ajax({type: 'post',
+		dataType: 'json',
+		async:false,
+		url:'map/add-point',success:function(data){self.errors_add_point=data.errors;},
+		data : {name : $('[name="point-name"]').val(),
+			email:$('[name="point-email"]').val(),
+			description : $('[name="point-description"]').val(),
+			point_type : $('[name="point-point_type"]').val(),
+			place_point : JSON.stringify( tmp )
+		       }
+	       });
+    },
+
+
     loadPOIs: function(){
         var self = this;
         $.get('map/points', function(response){
+		  var myIcon =new L.Icon({
+					  iconUrl: '/static/images/poi/attention.png',
+					  iconSize: [20, 20],
+					  iconAnchor: [-20, -20]
+					  //popupAnchor: [0, 0]
+				      });
+
 		  var poisGeojsonLayer = new L.GeoJSON(null,{
 							   pointToLayer: function (latlng){
-							       return new L.CircleMarker(latlng, {
-											     radius: 8,
-											     fillColor: "#ff7800",
-											     color: "#000",
-											     weight: 1,
-											     opacity: 1,
-											     fillOpacity: 0.8
+							       return new L.Marker(latlng, {
+										       opacity: 0.75,
+										       size:[20,20]
 											 });
 							   }
 						       });
+		  
 		  poisGeojsonLayer.on('featureparse', function(e){
 					  var popupContent = "";
 					  if (e.properties && e.properties.description) {
@@ -118,11 +155,19 @@ rovar = {
 					  if (e.properties && e.properties.style && e.layer.setStyle) {
 					      e.layer.setStyle(e.properties.style);
 					  }
+					  tmp_p=e;
+					  e.layer.setIcon(new L.Icon({iconUrl: '/static/images/poi/'+e.properties.type+'.png',
+								      iconSize: [20, 20],
+								      iconAnchor: [0, 0],
+								      popupAnchor: [0, 0]}));
 				      });
+
+
 		  self.map.addLayer(poisGeojsonLayer);
 		  poisGeojsonLayer.addGeoJSON(response);
               }, 'json');
     }
+
 };
 
 function add_track(){
@@ -141,6 +186,8 @@ function AddLike(id,url){
 	       });
     
 };
+
+var tmp_p;
 
 $(document).ready(
     function(){

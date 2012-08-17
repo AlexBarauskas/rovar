@@ -19,7 +19,7 @@ def index(request):
         user = Account.objects.get(id=user)
     if user and not user.is_admin:
         return HttpResponseNotFound()
-    return render_to_response('html/admin/admin.html',
+    return render_to_response('admin.html',
                               {'user':user},
                               context_instance=RequestContext(request))
 
@@ -31,7 +31,7 @@ def list_tracks(request):
         return HttpResponseNotFound()
     
     tracks = Track.objects.all()
-    return render_to_response('html/admin/list_tracks.html',
+    return render_to_response('list_tracks.html',
                               {'user':user,
                                'tracks': tracks},
                               context_instance=RequestContext(request))
@@ -44,7 +44,7 @@ def list_points(request):
         return HttpResponseNotFound()
     
     points = Point.objects.all()
-    return render_to_response('html/admin/list_points.html',
+    return render_to_response('list_points.html',
                               {'user':user,
                                'points': points},
                               context_instance=RequestContext(request))
@@ -56,7 +56,7 @@ def list_posts(request):
         return HttpResponseNotFound()
     
     posts = Post.objects.all()
-    return render_to_response('html/admin/list_posts.html',
+    return render_to_response('list_posts.html',
                               {'user':user,
                                'posts': posts},
                               context_instance=RequestContext(request))
@@ -81,7 +81,7 @@ def edit_add_post(request,post_id=None):
             return HttpResponseRedirect(reverse('admin_list_posts'))
     else:
         form = AddPost(**param)
-    return render_to_response('html/admin/add-post.html',
+    return render_to_response('add-post.html',
                               {'user':user,
                                'form': form,
                                'page_name' : page_name},
